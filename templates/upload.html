@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudoku Solver</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Left Section: Upload Image Form -->
+        <div class="upload-section">
+            <h2>Upload Sudoku Image</h2>
+            <p>Upload a Sudoku puzzle image and get the solved Sudoku!</p>
+
+            <form method="POST" enctype="multipart/form-data" action="/solve">
+                <label for="file">Choose an image...</label>
+                <input type="file" name="file" id="file" accept="image/*">
+                <button type="submit">Upload Image</button>
+            </form>
+        </div>
+
+        <!-- Center Section: Display Images -->
+        <div class="image-display">
+            <h1>Sudoku Solver</h1>
+            {% if input_image %}
+            <div class="images">
+                <div class="image-container">
+                    <h3>Input Image</h3>
+                    <img src="{{ url_for('static', filename=input_image) }}" alt="Input Sudoku">
+                </div>
+                <div class="image-container">
+                    <h3>Solved Image</h3>
+                    <img src="{{ url_for('static', filename=output_image) }}" alt="Solved Sudoku">
+                </div>
+            </div>
+            {% else %}
+            <p>Please upload an image of a Sudoku puzzle.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
